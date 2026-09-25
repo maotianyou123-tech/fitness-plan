@@ -3,7 +3,6 @@
 from pathlib import Path
 import argparse
 import base64
-import mimetypes
 import re
 import zipfile
 
@@ -24,7 +23,15 @@ def local_file(base, name):
 
 # 将图片和说明文件编码到HTML中，部署时不依赖额外资源路径。
 def data_url(path):
-    mime = mimetypes.guess_type(path.name)[0] or 'application/octet-stream'
+    # 不读取操作系统的MIME数据库，避免本机与GitHub运行器产生不同HTML。
+    mime = {
+        '.webp': 'image/webp',
+        '.png': 'image/png',
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.svg': 'image/svg+xml',
+        '.md': 'text/markdown',
+    }.get(path.suffix.lower(), 'application/octet-stream')
     return f'data:{mime};base64,' + base64.b64encode(path.read_bytes()).decode('ascii')
 
 
