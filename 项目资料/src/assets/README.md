@@ -28,4 +28,3 @@ Constraints: No people, no text, no numbers, no logos, no brands, no watermark. 
 ```text
 Edit the supplied bench press photograph. Replace the entire visible FLOOR surface with clean unmarked deep charcoal rubber flooring. Especially the lower right 250 by 120 pixel corner must be uniform natural dark rubber with absolutely NO pale lines, NO chalk, NO scratches, NO doodles, NO signature, NO written or drawn marks. Remove the small white squiggle right beside the extreme bottom right edge entirely. This corner should just be plain black floor. Preserve all the gym equipment, bench, barbell, concrete back wall, warm sunlight, dark empty left side, and 16:9 framing. Photorealistic seamless edit.
 ```
-
