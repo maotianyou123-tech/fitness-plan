@@ -1,0 +1,17 @@
+# 依赖、缓存和本地测试报告不进入仓库。
+node_modules/
+__pycache__/
+*.py[cod]
+.site/
+项目资料/测试输出/
+playwright-report/
+test-results/
+
+# 本地环境配置与个人导出记录不属于网站发布文件。
+.env
+.env.*
+!.env.example
+力量训练记录-*.json
+长期力量轮转-*.csv
+.DS_Store
+Thumbs.db

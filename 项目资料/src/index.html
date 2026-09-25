@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f6f5f1" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-title" content="焚决训练" />
+    <meta
+      name="description"
+      content="卧推、深蹲、休息、卧推、硬拉引体、休息的长期轮转计划，区分温宁式热身、主项、辅助与恢复。"
+    />
+    <title>焚决 · 长期力量轮转</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <svg
+      class="icon-library"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol id="i-grid" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7" height="7" rx="2" />
+          <rect x="14" y="3" width="7" height="7" rx="2" />
+          <rect x="3" y="14" width="7" height="7" rx="2" />
+          <rect x="14" y="14" width="7" height="7" rx="2" />
+        </symbol>
+        <symbol id="i-target" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="12" cy="12" r="5" />
+          <circle cx="12" cy="12" r="1" />
+        </symbol>
+        <symbol id="i-route" viewBox="0 0 24 24">
+          <circle cx="5" cy="5" r="2" />
+          <circle cx="19" cy="19" r="2" />
+          <path d="M7 5h9a4 4 0 0 1 0 8H8a3 3 0 0 0 0 6h9" />
+        </symbol>
+        <symbol id="i-barbell" viewBox="0 0 24 24">
+          <path d="M3 9v6M6 6v12M18 6v12M21 9v6M6 12h12" />
+        </symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24">
+          <path
+            d="M20.5 4.6a5.4 5.4 0 0 0-7.6 0l-.9.9-.9-.9a5.4 5.4 0 0 0-7.6 7.6L12 21l8.5-8.8a5.4 5.4 0 0 0 0-7.6Z"
+          />
+          <path d="m5 11 4 0 2-4 2 8 2-4h4" />
+        </symbol>
+        <symbol id="i-journal" viewBox="0 0 24 24">
+          <path d="M5 3h14v18H5zM3 7h4M3 12h4M3 17h4M10 8h5M10 12h5M10 16h3" />
+        </symbol>
+        <symbol id="i-book" viewBox="0 0 24 24">
+          <path
+            d="M12 5c-3-2-7-2-10-1v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Zm0 0v15"
+          />
+        </symbol>
+        <symbol id="i-print" viewBox="0 0 24 24">
+          <path d="M6 8V3h12v5M6 17H3V9h18v8h-3M6 14h12v7H6zM17 11h1" />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+          <path d="M4 12h16m-6-6 6 6-6 6" />
+        </symbol>
+        <symbol id="i-spark" viewBox="0 0 24 24">
+          <path d="m13 2-8 12h6l-1 8 9-13h-7z" />
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24">
+          <path d="m5 12 4 4L19 6" />
+        </symbol>
+      </defs>
+    </svg>
+    <nav class="topbar" aria-label="主导航">
+      <a class="brand" href="#top"
+        ><span class="brand-mark"
+          ><svg class="icon"><use href="#i-barbell" /></svg></span
+        ><span class="brand-word"
+          >焚决<small>THE STRENGTH JOURNAL</small
+          ><small id="mobilePageLabel" class="mobile-only"
+            >训练首页</small
+          ></span
+        ></a
+      >
+      <button
+        type="button"
+        class="mobile-share mobile-only"
+        data-share-site
+        aria-label="分享训练网站"
+      >
+        分享 ↗
+      </button>
+      <p class="nav-caption">我的训练空间</p>
+      <div class="nav-links">
+        <a href="#overview"
+          ><svg class="icon"><use href="#i-target" /></svg><span>设置起点</span
+          ><small>01</small></a
+        >
+        <a href="#cycle"
+          ><svg class="icon"><use href="#i-route" /></svg><span>完整计划</span
+          ><small>02</small></a
+        >
+        <a href="#split"
+          ><svg class="icon"><use href="#i-barbell" /></svg
+          ><span>热身与辅助</span><small>03</small></a
+        >
+        <a href="#session-plan"
+          ><svg class="icon"><use href="#i-grid" /></svg><span>当前训练</span
+          ><small>04</small></a
+        >
+        <a href="#failure"
+          ><svg class="icon"><use href="#i-heart" /></svg><span>进退规则</span
+          ><small>05</small></a
+        >
+        <a href="#review"
+          ><svg class="icon"><use href="#i-journal" /></svg><span>训练记录</span
+          ><small>06</small></a
+        >
+        <a href="#sources"
+          ><svg class="icon"><use href="#i-book" /></svg><span>参考与说明</span
+          ><small>07</small></a
+        >
+      </div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-progress">
+          <span>本周期记录 <b id="dashboardProgress">0 / 24</b></span>
+          <div><i id="sidebarProgress"></i></div>
+          <small>每一次认真训练，都算数。</small>
+        </div>
+        <button class="ghost-button" id="printButton" type="button">
+          <svg class="icon"><use href="#i-print" /></svg>打印完整计划
+        </button>
+        <div class="sidebar-edition">
+          <span class="status-dot"></span> REBUILD EDITION <span>2026</span>
+        </div>
+      </div>
+    </nav>
+    <header class="workspace-header" id="top">
+      <div>
+        <p>PERSONAL TRAINING / 个人训练档案</p>
+        <h1>把每一练，接成一条进步路线。</h1>
+      </div>
+      <div class="workspace-status">
+        <span class="status-dot"></span>长期力量轮转<span class="edition-pill"
+          >VOL. 01</span
+        >
+      </div>
+    </header>
+    <section class="hero" aria-label="长期力量轮转介绍">
+      <div
+        class="hero-photo"
+        role="img"
+        aria-label="光影中的卧推凳与杠铃器械"
+      ></div>
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+        <p class="hero-kicker"><span></span> BACK TO THE BAR</p>
+        <h2>让每一练，<br />贴合<span>你的力量。</span></h2>
+        <p class="hero-lead">
+          练得扎实，也留出恢复。<br />卧推、下肢与休息，各有位置。
+        </p>
+        <a class="hero-button" id="continueTraining" href="#session-plan"
+          >打开我的训练卡<svg class="icon"><use href="#i-arrow" /></svg
+        ></a>
+      </div>
+      <div class="hero-goal">
+        <span>THE LONG GAME</span><strong>180<small>KG</small></strong>
+        <p>长期目标 · 一步一步回来</p>
+      </div>
+      <div class="hero-bottom">
+        <span>REBUILD YOUR STRENGTH.</span
+        ><span>练二休一 / 四次卧推十二天 / 按表现进阶</span>
+      </div>
+    </section>
+    <div class="dashboard-summary">
+      <div class="metric-grid">
+        <article>
+          <span
+            ><svg class="icon"><use href="#i-grid" /></svg>整周期进度</span
+          ><strong id="progressPercent">0 / 24</strong>
+          <div class="progress-track"><i id="progressBar"></i></div>
+        </article>
+        <article>
+          <span
+            ><svg class="icon"><use href="#i-spark" /></svg>卧推组次</span
+          ><strong>4<small>种组次</small></strong
+          ><small>4×9 / 5×7 / 6×5 / 7×3</small>
+        </article>
+        <article>
+          <span
+            ><svg class="icon"><use href="#i-route" /></svg>训练节奏</span
+          ><strong>练二<small>休一</small></strong
+          ><small>卧推后接下肢，再休息</small>
+        </article>
+        <article>
+          <span
+            ><svg class="icon"><use href="#i-heart" /></svg>卧推完整轮</span
+          ><strong>12<small>天</small></strong
+          ><small>4卧推 + 2深蹲 + 2硬拉 + 4休息</small>
+        </article>
+      </div>
+      <div class="today-strip">
+        <div class="today-icon">
+          <svg class="icon"><use href="#i-barbell" /></svg>
+        </div>
+        <div class="today-heading">
+          <span id="dashboardPhase">开局恢复</span
+          ><strong id="dashboardCurrent">卧推 · 恢复1</strong>
+        </div>
+        <div class="today-prescription">
+          <strong id="dashboardPrescription">2 × 5</strong
+          ><small id="dashboardRir">RPE ≤8</small>
+        </div>
+        <div class="today-base">
+          <span>训练最大重量 1TM</span><strong id="profileBase">155 kg</strong>
+        </div>
+        <a href="#overview" class="today-link"
+          >设置起点<svg class="icon"><use href="#i-arrow" /></svg
+        ></a>
+      </div>
+    </div>
+    <main>
+      <section
+        class="overview section-shell"
+        id="overview"
+        aria-labelledby="overview-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">01 · START WITH RECOVERY</p>
+            <h2 id="overview-title">先卸下疲劳，再建立长期节奏</h2>
+          </div>
+          <p class="heading-aside">
+            常规卧推保留4×9、5×7、6×5、7×3。深蹲从100kg的5×5开始，硬拉从140kg的5×5开始；这些是待实际验证的起点，恢复与RPE决定能否执行。
+          </p>
+        </div>
+        <div class="calibration-layout">
+          <div class="calibration-steps">
+            <div class="card-heading">
+              <span class="card-icon"
+                ><svg class="icon"><use href="#i-heart" /></svg
+              ></span>
+              <div>
+                <span class="card-overline">2026-09-24 · 长期轮转</span>
+                <h3>这次真正调整的三件事</h3>
+              </div>
+            </div>
+            <ol>
+              <li>
+                <b>卧推间隔拉到三个日历日。</b>
+                卧推→下肢→休息。下肢交替深蹲和硬拉，四种卧推走完用12天。卧推仍有22组122次，平均每7天约12.8组，比原八天循环的19.3组低约三分之一。
+              </li>
+              <li>
+                <b>热身必须保持低强度。</b>
+                常规训练日六项、两轮、每项每轮25次，共12组300次，约15–25分钟。目标RPE3–4、至少还能轻松做约10次；若局部酸胀、动作走样或主项热身变沉，就减阻力或提前结束。
+              </li>
+              <li>
+                <b>两轮常规训练后，安排恢复。</b>
+                24天常规＋6天恢复，构成一个30天周期。你已报告疲劳，默认先加6天开局恢复。恢复段是明确的例外：减少主项组次，暂停300次热身和练后辅助，不凑训练量。
+              </li>
+            </ol>
+            <p class="boundary">
+              这是借鉴温宁低强度准备、分清主项与辅助的个人安排，没有照搬他的最大努力/动态努力体系。12×25不是额外的增肌任务，也不保证消除疲劳。长期执行依靠剂量、余力、恢复和记录一起调整。
+            </p>
+          </div>
+          <form id="setupForm" class="setup-card">
+            <div class="card-heading">
+              <span class="card-icon"
+                ><svg class="icon"><use href="#i-barbell" /></svg
+              ></span>
+              <div>
+                <span class="card-overline">INDIVIDUAL STARTING LOADS</span>
+                <h3>填写起点，各日独立调整</h3>
+              </div>
+            </div>
+            <label for="tm"
+              >卧推参考1TM · kg<input
+                id="tm"
+                type="number"
+                inputmode="decimal"
+                min="20"
+                max="300"
+                step="0.1"
+                required
+              /><span class="field-hint"
+                >沿用此前可靠单次TM155kg作参考。点击按钮才按65/70/75/80%生成四日起点；不会自动继承旧冲刺末段的重量。</span
+              ></label
+            >
+            <label for="increment"
+              >器械最小总增量<select id="increment">
+                <option value="2.5">2.5 kg</option>
+                <option value="5">5 kg</option></select
+              ><span class="field-hint"
+                >指含杆总重量，每侧分别需要1.25kg或2.5kg小片。只有5kg档距时，加重条件更严格。</span
+              ></label
+            >
+            <label for="barWeight"
+              >所用杠铃<select id="barWeight">
+                <option value="20">20 kg 标准杆</option>
+                <option value="15">15 kg 杆</option>
+                <option value="10">10 kg 技术杆</option>
+              </select></label
+            >
+            <button id="seedBench" type="button" class="secondary-button">
+              按 TM 生成卧推参考起点
+            </button>
+            <div id="loadInputs" class="load-inputs"></div>
+            <label for="startDate"
+              >本周期起始日期<input id="startDate" type="date" required
+            /></label>
+            <label class="inline-check"
+              ><input
+                id="entryRecovery"
+                type="checkbox"
+              />先做6天开局恢复，再进入常规训练</label
+            >
+            <p class="setup-rhythm">
+              <b>常规训练起点</b><br />默认卧推100 / 107.5 / 115 /
+              122.5kg，深蹲100kg，硬拉140kg。最近工作重量和末组RPE尚未补充，首轮不预设必定合适；首组明显偏重就降一档。
+            </p>
+            <button class="primary-button" type="submit">保存并计算安排</button>
+            <p id="setupMessage" role="status">
+              完整处方按当前设置显示。已记录训练保留原计划；修改只作用于后续安排。
+            </p>
+          </form>
+        </div>
+        <p class="control-hint">
+          RPE7/8/9大约分别还能完成3/2/1次；RIR就是剩余次数。热身的RPE3–4只表示很轻，不精确换算极限。哑铃重量按每只，杠铃重量含杆，器械标重只与同一台机器比较。
+        </p>
+      </section>
+      <section class="cycle-section" id="cycle" aria-labelledby="cycle-title">
+        <div class="section-shell">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">02 · TWELVE DAYS, FOUR BENCH SESSIONS</p>
+              <h2 id="cycle-title">训练与休息，一起排清楚</h2>
+            </div>
+            <button
+              id="exportPlanButton"
+              type="button"
+              class="secondary-button"
+            >
+              下载完整训练表 CSV
+            </button>
+          </div>
+          <p id="planSummary" class="control-hint"></p>
+          <div class="rhythm-example">
+            <h3>常规12天，完整走完卧推A—D</h3>
+            <ol class="rhythm-days" id="rhythmDays"></ol>
+            <p>
+              六天的训练类型重复一次，卧推组次继续向前走：第1/4/7/10天依次A/B/C/D。额外休息只让后续顺延，不把下肢取消，也不把两次卧推挤到一起。
+            </p>
+          </div>
+          <div id="cycleGrid" class="plan-phases"></div>
+          <p class="stage-bridge">
+            训练表只为工作日建立记录，休息日不用打卡。重量是计划值；正常训练目标未达成时，系统会下调之后同类训练一档，历史保留原处方。
+          </p>
+        </div>
+      </section>
+      <section
+        class="split-section section-shell"
+        id="split"
+        aria-labelledby="split-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">03 · WARM-UP, MAIN LIFT, ASSISTANCE</p>
+            <h2 id="split-title">热身做准备，辅助做训练</h2>
+          </div>
+          <p class="heading-aside">
+            同一个动作可以有不同用途，区别在负荷、难度、数量和进阶目标。正式组前不把小肌群练到酸胀；正式组后，辅助才按余力渐进加重。
+          </p>
+        </div>
+        <div class="warmup-principles">
+          <p>
+            <b>顺序：</b>轻活动3–5分钟 → 六项温宁式准备×两轮 → 休息3–5分钟 →
+            主项逐级递增热身 → 工作组 → 练后辅助。
+          </p>
+          <p>
+            <b>节奏：</b
+            >动作间可休20–40秒，轮间60–90秒；不计时抢速度。热身试探重量仅作找感觉的起点，25次若超过RPE4就减轻；自重动作也可能太重，应先降低难度。
+          </p>
+          <p>
+            <b>计数：</b
+            >每项每轮算1组。侧支撑与单腿伸膝第一轮左、第二轮右，每侧各25次，总共两组；交替核心动作是左右合计25次，不是每侧25次。完整一轮六项150次，两轮300次。
+          </p>
+          <p>
+            <b>恢复段：</b
+            >暂停这套12×25循环，只做轻活动和专项递增热身，练后辅助省略。这是降低总量的阶段，不用恢复训练去证明自己能做多少。
+          </p>
+        </div>
+        <div id="splitGrid" class="split-grid"></div>
+        <div class="volume-strip">
+          <article>
+            <span>每12天卧推</span><strong>22组</strong
+            ><small>4 + 5 + 6 + 7</small>
+          </article>
+          <article>
+            <span>深蹲主项</span><strong>10组</strong><small>两次5×5</small>
+          </article>
+          <article>
+            <span>硬拉主项</span><strong>10组</strong><small>两次5×5</small>
+          </article>
+          <article>
+            <span>练后辅助</span><strong>36组上限</strong
+            ><small>含可选弯举；可省略</small>
+          </article>
+          <article>
+            <span>低强度准备</span><strong>96组</strong
+            ><small>8天×12组，仍有疲劳成本</small>
+          </article>
+        </div>
+        <p class="control-hint">
+          正常主项全部达到要求且恢复良好，才做完整辅助。主项超上限、暖身后发沉或上一练疲劳未退时，先取消胸推、推肩和直腿硬拉等复合辅助；不把没做的辅助补到休息日。
+        </p>
+      </section>
+      <section
+        class="week-section"
+        id="session-plan"
+        aria-labelledby="session-title"
+      >
+        <div class="section-shell">
+          <div class="section-heading week-heading">
+            <div>
+              <p class="eyebrow dark">04 · FOLLOW TODAY'S ORDER</p>
+              <h2 id="session-title"><span id="sessionLabel"></span></h2>
+              <p id="sessionIntent" class="week-intent"></p>
+            </div>
+            <div class="week-nav">
+              <button id="prevSession" type="button" aria-label="查看上一次">
+                ←</button
+              ><select id="sessionSelect" aria-label="选择训练"></select
+              ><button id="nextSession" type="button" aria-label="查看下一次">
+                →
+              </button>
+            </div>
+          </div>
+          <nav class="training-steps mobile-only" aria-label="本次训练步骤">
+            <a href="#warmupBlock">1 热身</a><a href="#rampBlock">2 上杠</a
+            ><a href="#mainCard">3 主项</a><a href="#accessoryBlock">4 辅助</a>
+          </nav>
+          <div id="sessionGate" class="notice" role="status"></div>
+          <article class="log-card support-card" id="warmupBlock">
+            <div class="card-overline">01 / 低强度准备</div>
+            <h3 id="warmupTitle"></h3>
+            <p id="warmupCue" class="control-hint"></p>
+            <div id="warmupRows" class="support-rows"></div>
+            <p id="warmupCount" role="status"></p>
+          </article>
+          <article class="same-day-card ramp-card" id="rampBlock">
+            <div class="card-overline">02 / 主项专项热身 · 不计入12组</div>
+            <h3>逐级加重，逐级减少次数</h3>
+            <div id="rampList"></div>
+            <p id="rampCue" class="control-hint"></p>
+          </article>
+          <article id="mainCard" class="main-session"></article>
+          <form id="logForm" class="log-card">
+            <div class="section-heading compact">
+              <div>
+                <h3>记录今天的主项</h3>
+                <p>每组填写实际重量、次数和RPE；未做的组填0，RPE留空。</p>
+              </div>
+              <label for="actualDate"
+                >实际日期<input id="actualDate" type="date" required
+              /></label>
+            </div>
+            <div class="log-controls">
+              <label
+                >本次状态<select id="readiness">
+                  <option value="normal">正常训练</option>
+                  <option value="fatigued">疲劳暂停</option>
+                  <option value="pain">疼痛／异常暂停</option>
+                </select></label
+              ><label
+                >准备后的感受<select id="warmupEffect">
+                  <option value="unknown">未记录</option>
+                  <option value="ready">准备充分</option>
+                  <option value="tired">准备后已疲劳</option>
+                </select></label
+              >
+            </div>
+            <div id="setRows" class="set-rows"></div>
+            <label class="inline-check"
+              ><input
+                id="technique"
+                type="checkbox"
+              />已完成次数动作标准一致，无保护人助力，未用代偿勉强完成</label
+            >
+            <p class="control-hint">
+              正常训练可以记录未完成目标的结果；不要补组追赶。疼痛或明显疲劳记录为暂停，本日和后续顺延。主项保存后仍可填写下方辅助；进度只代表主项记录，不代表辅助全部完成。
+            </p>
+            <div class="log-actions">
+              <button id="saveAttempt" type="submit" class="primary-button">
+                保存本次主项</button
+              ><button id="goNext" type="button" class="secondary-button">
+                查看下一次安排 →
+              </button>
+            </div>
+            <p id="attemptResult" class="result-box" role="status"></p>
+          </form>
+          <article class="log-card support-card" id="accessoryBlock">
+            <div class="card-overline">04 / 主项之后</div>
+            <h3>练后辅助：保留余力，逐步进阶</h3>
+            <p class="control-hint" id="accessoryCue"></p>
+            <div id="accessoryRows" class="support-rows"></div>
+          </article>
+          <div class="next-cycle-card recovery-settings">
+            <h3>本次之后的恢复安排</h3>
+            <label class="inline-check"
+              ><input
+                id="extraRest"
+                type="checkbox"
+              />本次后额外增加一天休息，后续整体顺延</label
+            >
+            <div class="next-training">
+              <span>下一次训练 · 参考</span
+              ><strong id="nextTrainingDate"></strong>
+            </div>
+            <p id="recoveryMessage"></p>
+          </div>
+          <div class="week-notes">
+            <label for="sessionNotes">本次笔记 · 睡眠 / 肩肘腰 / 次日恢复</label
+            ><textarea
+              id="sessionNotes"
+              rows="4"
+              placeholder="记录主项末组难度、热身是否影响工作组、辅助实际取舍，以及第二天的恢复。"
+            ></textarea
+            ><span id="savedIndicator" aria-live="polite"
+              >记录保存在当前浏览器，建议定期导出。</span
+            >
+          </div>
+        </div>
+      </section>
+      <section
+        class="failure-section"
+        id="failure"
+        aria-labelledby="failure-title"
+      >
+        <div class="section-shell failure-layout">
+          <div>
+            <p class="eyebrow">05 · KEEP THE PLAN RECOVERABLE</p>
+            <h2 id="failure-title">长期进步，需要停止加码的规则。</h2>
+            <p class="failure-lead">
+              日期决定训练顺序，表现决定重量。正常卧推组次固定；恢复段临时减量，不占用A—D的正常轮转。
+            </p>
+          </div>
+          <ol class="failure-steps">
+            <li>
+              <span>起步校准</span>
+              <div>
+                <b>连续疲劳时先恢复6天。</b>
+                <p>
+                  默认开局卧推2×5和2×3，约用对应常规重量的80%；深蹲2×5、硬拉2×3约用70%，向下配片取整，RPE≤6。不做12×25及练后辅助。仍未恢复时继续延后，不因第7天到了就进入高容量。
+                </p>
+              </div>
+            </li>
+            <li>
+              <span>主项上限</span>
+              <div>
+                <b>卧推和深蹲≤RPE8，硬拉≤7.5。</b>
+                <p>
+                  前几组应明显留有余力。首组就接近上限，后续减一档；重量降低仍明显吃力，提前结束。硬拉140kg五组五次是25次工作重复，如果近期没有完整做过，就按首轮实测难度校准，不能把140当成必须完成的数字。
+                </p>
+              </div>
+            </li>
+            <li>
+              <span>按项进阶</span>
+              <div>
+                <b>同类同重量连续两次达标，再考虑最小一档。</b>
+                <p>
+                  器械2.5kg档距时要求全部组RPE≤7.5；5kg档距时要求≤7。卧推A/B/C/D、深蹲、硬拉分别判断，恢复段不计入。整周期结束、恢复正常后应用建议；数据不足或热身已造成疲劳就保持。
+                </p>
+              </div>
+            </li>
+            <li>
+              <span>辅助进阶</span>
+              <div>
+                <b>先把次数做稳，再小幅加重。</b>
+                <p>
+                  同一辅助连续两次全部达到次数上限且仍保留目标余力，才加最小可用档位，再从次数下限做起。热身动作不使用这条追重规则。主项难度过高时先省略复合辅助，内收外展也不追力竭。
+                </p>
+              </div>
+            </li>
+            <li>
+              <span>提前恢复</span>
+              <div>
+                <b>同重量连续变难、反复欠次数、肩肘腰不适时及时调整。</b>
+                <p>
+                  正常未达标会下调未来同类训练一档。整体恢复不佳可提前进入6天恢复段；归档当前记录后，从轻练重新开始。持续或反复疼痛停止相关训练并评估，不能靠增加热身组数解决。
+                </p>
+              </div>
+            </li>
+            <li>
+              <span>周期回顾</span>
+              <div>
+                <b>24天常规＋6天恢复是起始框架。</b>
+                <p>
+                  具体减量时机来自本版编排，并非研究证明的最佳周期。睡眠不足、工作压力大或热身300次难以保持轻松时，应更早减量；长时间稳定轻松时也先看记录，不自动回到每轮强加5kg。
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+      <section class="section-shell" id="review" aria-labelledby="review-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">06 · REVIEW EACH LIFT</p>
+            <h2 id="review-title">记录与下一周期</h2>
+          </div>
+          <button id="exportButton" type="button" class="secondary-button">
+            导出全部记录 JSON
+          </button>
+        </div>
+        <p class="control-hint">
+          记录包含主项、热身、辅助和笔记。旧卧推方案保留为只读历史，新方案独立保存，不把旧的冲刺记录当成新方案的加重依据。
+        </p>
+        <div class="table-scroll">
+          <table class="history-table">
+            <caption>
+              最近30条主项记录；完整内容在JSON备份中
+            </caption>
+            <thead>
+              <tr>
+                <th>日期 / 训练</th>
+                <th>实际重量</th>
+                <th>次数 / RPE</th>
+                <th>结果</th>
+              </tr>
+            </thead>
+            <tbody id="historyRows"></tbody>
+          </table>
+        </div>
+        <div class="next-cycle-card">
+          <h3>各主项分别判断</h3>
+          <div id="recommendationGrid" class="recommendation-grid"></div>
+          <div class="log-actions">
+            <button id="newCycleButton" type="button" class="primary-button">
+              恢复正常，按建议开始下一周期</button
+            ><button
+              id="recoverNowButton"
+              type="button"
+              class="secondary-button"
+            >
+              提前进入6天恢复段
+            </button>
+          </div>
+          <p id="archiveMessage" role="status"></p>
+          <p class="control-hint">
+            “提前恢复”会归档本周期，并用当前或更低重量建立“6天恢复＋24天常规＋6天恢复”；常规重新从卧推A开始。已有记录保留，不重复补做失败组。
+          </p>
+        </div>
+        <details id="legacyDetails">
+          <summary>查看以前的训练记录 · 只读</summary>
+          <div id="legacyRecords"></div>
+        </details>
+      </section>
+      <section
+        class="sources-section section-shell"
+        id="sources"
+        aria-labelledby="sources-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">07 · SOURCES & YOUR ADAPTATION</p>
+            <h2 id="sources-title">参考依据与本版取舍</h2>
+          </div>
+          <p class="heading-aside">
+            核对日期2026-09-23。资料支持训练原则；具体动作、12×25搭配、RPE门槛和30天编排由本版设计，效果需要实际记录检验。
+          </p>
+        </div>
+        <div class="source-grid">
+          <article class="source-card">
+            <span class="source-number">01 / WENNING'S OWN MATERIAL</span>
+            <h3>温宁公开热身示例</h3>
+            <p>
+              原资料有不同动作数、次数和轮数，并非固定“四项三圈”。公开示例将准备动作安排在主项之前，强度约RPE4。我们按你的要求采用六项两轮、每项25次，并允许休息以控制疲劳。
+            </p>
+            <a
+              href="https://wenningstrength.com/wp-content/uploads/Conjugate-Training-on-a-Budget_SAMPLEWEEK-1.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              >查看官方公开示例 ↗</a
+            >
+          </article>
+          <article class="source-card">
+            <span class="source-number">02 / FATIGUE & FAILURE</span>
+            <h3>不把每组练到极限</h3>
+            <p>
+              一项10名训练男性的卧推与深蹲研究发现，力竭方案比保留余力方案造成更大急性疲劳、恢复更慢。它支持保留余力的原则，不能推导你的准确恢复时间，也未测试本版温宁式热身。
+            </p>
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/28965198/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >阅读原始研究 ↗</a
+            >
+          </article>
+          <article class="source-card">
+            <span class="source-number">03 / DELOAD PRINCIPLES</span>
+            <h3>恢复段要实质降低训练压力</h3>
+            <p>
+              国际教练共识讨论了减量、降低努力程度和按疲劳调整时机。本版据此安排恢复入口；24＋6天不是该研究验证的唯一或最佳周期。
+            </p>
+            <a
+              href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10511399/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >阅读减量训练共识 ↗</a
+            >
+          </article>
+          <article class="source-card">
+            <span class="source-number">04 / YOUR COMPLETE GUIDE</span>
+            <h3>完整安排与使用方法</h3>
+            <p>
+              含每种训练日的热身、组次、休息、选重、练后辅助、进阶与恢复取舍。HTML独立离线运行，记录只在当前浏览器保存。
+            </p>
+            <a
+              href="../docs/重建计划与研究依据.md"
+              download="重建计划与研究依据.md"
+              >下载详细设计说明 ↓</a
+            ><br /><a href="../docs/使用说明.md" download="使用说明.md"
+              >下载使用说明 ↓</a
+            ><br /><a
+              href="../docs/GitHub发布说明.md"
+              download="GitHub发布说明.md"
+              >下载网站发布说明 ↓</a
+            ><br /><button
+              type="button"
+              class="secondary-button share-entry"
+              data-share-site
+            >
+              分享网站链接 ↗
+            </button>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span>焚决 <small>THE STRENGTH JOURNAL</small></span>
+      <p>训练与恢复，都算计划的一部分。</p>
+      <a href="#top">回到顶部 ↑</a>
+    </footer>
+    <nav class="mobile-bottom-nav mobile-only" aria-label="手机快捷导航">
+      <a href="#top" data-mobile-tab="top"
+        ><svg class="icon"><use href="#i-grid" /></svg><span>首页</span></a
+      >
+      <a href="#cycle" data-mobile-tab="cycle"
+        ><svg class="icon"><use href="#i-route" /></svg><span>计划</span></a
+      >
+      <a href="#session-plan" data-mobile-tab="session-plan" data-resume
+        ><svg class="icon"><use href="#i-barbell" /></svg><span>训练</span></a
+      >
+      <a href="#review" data-mobile-tab="review"
+        ><svg class="icon"><use href="#i-journal" /></svg><span>记录</span></a
+      >
+      <button
+        type="button"
+        id="mobileMenuButton"
+        aria-haspopup="dialog"
+        aria-controls="mobileMenu"
+        aria-expanded="false"
+      >
+        <svg class="icon"><use href="#i-book" /></svg><span>更多</span>
+      </button>
+    </nav>
+    <dialog
+      id="mobileMenu"
+      class="site-dialog menu-dialog"
+      aria-labelledby="menuTitle"
+    >
+      <div class="dialog-heading">
+        <div>
+          <span class="card-overline">训练工具箱</span>
+          <h2 id="menuTitle">更多安排</h2>
+        </div>
+        <button
+          type="button"
+          class="dialog-close"
+          data-close-dialog
+          aria-label="关闭更多菜单"
+        >
+          关闭
+        </button>
+      </div>
+      <div class="menu-links">
+        <a href="#overview"
+          ><b>设置起点</b><span>修改TM、重量与开始日期</span></a
+        ><a href="#split"><b>热身与辅助</b><span>查看动作和训练剂量</span></a
+        ><a href="#failure"
+          ><b>进阶与恢复规则</b><span>何时加重、何时减量</span></a
+        ><a href="#sources"
+          ><b>参考资料与使用说明</b><span>设计依据与离线说明</span></a
+        >
+      </div>
+      <div class="dialog-actions">
+        <button type="button" class="secondary-button" data-share-site>
+          分享网站</button
+        ><button type="button" class="secondary-button" id="mobilePrintButton">
+          打印完整计划
+        </button>
+      </div>
+      <p class="dialog-hint">
+        训练记录只保存在当前浏览器。可在“记录”中导出备份。
+      </p>
+    </dialog>
+    <dialog id="shareDialog" class="site-dialog" aria-labelledby="shareTitle">
+      <div class="dialog-heading">
+        <div>
+          <span class="card-overline">一起认真训练</span>
+          <h2 id="shareTitle">分享训练网站</h2>
+        </div>
+        <button
+          type="button"
+          class="dialog-close"
+          data-close-dialog
+          aria-label="关闭分享窗口"
+        >
+          关闭
+        </button>
+      </div>
+      <p id="shareHint" class="dialog-hint"></p>
+      <label class="share-url-label" for="shareUrl"
+        >网站地址<input
+          id="shareUrl"
+          type="url"
+          readonly
+          autocomplete="off"
+          spellcheck="false"
+      /></label>
+      <div class="dialog-actions">
+        <button type="button" class="primary-button" id="copySiteLink">
+          复制链接</button
+        ><button type="button" class="secondary-button" id="nativeShareSite">
+          系统分享
+        </button>
+      </div>
+      <p
+        id="shareStatus"
+        class="dialog-hint"
+        role="status"
+        aria-live="polite"
+      ></p>
+    </dialog>
+    <noscript
+      ><p class="notice">
+        请启用JavaScript查看计算和记录功能。参考说明可通过页面末尾下载。
+      </p></noscript
+    >
+    <script src="training.js"></script>
+    <script src="app.js"></script>
+    <script src="mobile.js"></script>
+  </body>
+</html>

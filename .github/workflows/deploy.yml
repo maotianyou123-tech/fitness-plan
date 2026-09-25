@@ -1,0 +1,66 @@
+# 推送main后先检查训练逻辑和构建产物，再发布单文件网页。
+name: 检查并发布训练网站
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# 构建任务只读仓库；部署任务单独申请Pages发布权限。
+permissions:
+  contents: read
+
+concurrency:
+  group: fitness-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: 检查源码与生成发布包
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出项目
+        uses: actions/checkout@v6
+      - name: 准备Node环境
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - name: 准备Python环境
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: 检查脚本语法与训练计算
+        run: |
+          node --check 项目资料/src/app.js
+          node --check 项目资料/src/mobile.js
+          node --test 项目资料/tests/training.test.cjs
+      - name: 校验发布文件与源码一致
+        run: python3 项目资料/scripts/build.py --check
+      - name: 准备网站文件
+        # 只发布HTML，源码、测试和开发文档留在Git仓库中。
+        run: |
+          mkdir -p .site
+          cp index.html .site/index.html
+      - name: 上传网站部署产物
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .site
+
+  deploy:
+    name: 发布到GitHub Pages
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 发布网站
+        id: deployment
+        uses: actions/deploy-pages@v4

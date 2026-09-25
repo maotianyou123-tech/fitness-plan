@@ -1,0 +1,6 @@
+# 源码统一使用LF换行；压缩包、图像和PDF保留二进制内容。
+* text=auto eol=lf
+*.zip binary
+*.png binary
+*.webp binary
+*.pdf binary
